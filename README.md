@@ -46,7 +46,7 @@ AnalyticsManager.getInstance().debugMode(context, true);
 ```
 
 ### Manual track
-Sometimes, you cannot use annotations (if your tracks require a condition). In this case, you can use trackers manually :
+Sometimes, you cannot use annotations (if your tracks require a condition for example). In this case, you can use trackers manually :
 ```java
 private void onLoginButtonClicked(){
   if(user.isLogged()){
@@ -75,7 +75,3 @@ protected void onCreate(Bundle savedInstanceState) {
   (...)
 }
 ```
-
-# Roadmap
-
-- Implement a 'list' system to send tracks on multiple Google Analytics accounts.
