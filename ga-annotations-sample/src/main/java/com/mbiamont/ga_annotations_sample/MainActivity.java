@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mbiamont.ga_annotations.AnalyticsManager;
-import com.mbiamont.ga_annotations.Event;
 import com.mbiamont.ga_annotations.annotation.TrackEvent;
 import com.mbiamont.ga_annotations.annotation.TrackScreen;
 
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @TrackEvent(category = "Method", action = "onCreateOptionMenu", label = "onCreateOptionsMenu(Menu menu)", value = 1)
+    @TrackEvent(category = "UI", action = "onCreateOptionMenu", label = "MainActivity", value = 1)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -40,5 +39,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void onLoginButtonClicked() {
+        AnalyticsManager.getInstance().trackEvent("ui_action", "on_click", "on_click_login_button", 1);
+        doStuff();
+    }
+
+    private void doStuff() {
+        AnalyticsManager.getInstance().trackScreen("MainActivity");
     }
 }

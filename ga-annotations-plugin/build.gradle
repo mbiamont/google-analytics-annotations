@@ -1,13 +1,49 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
 
-group='com.mbiamont'
-version='0.0.1'
+group='com.github.mbiamont'
+version='1.0.0'
 
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: uri('../repo'))
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: CENTRAL_USERNAME, password: CENTRAL_PASSWORD)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: CENTRAL_USERNAME, password: CENTRAL_PASSWORD)
+            }
+
+            pom.project {
+                name 'Google Analytics Annotations Gradle Plugin'
+                packaging 'jar'
+                description 'Gradle plugin to use Google Analytics Annotations Library'
+                url 'https://github.com/mbiamont/google-analytics-annotations'
+
+                scm {
+                    connection 'scm:git:https://github.com/mbiamont/google-analytics-annotations.git'
+                    developerConnection 'scm:git:https://github.com/mbiamont/google-analytics-annotations.git'
+                    url 'https://github.com/mbiamont/google-analytics-annotations'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'mbiamont'
+                        name 'Melvin Biamont'
+                        email 'memlvin.biamont@gmail.com'
+                    }
+                }
+            }
         }
     }
 }
