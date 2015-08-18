@@ -38,7 +38,12 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ### DebugMode
 If you just want to check if the tracks are correctly implemented; you can use the debugMode. It'll print tracks in LogCat instead of send them.
-So, instead of call `AnalyticsManager.getInstance().init()`, call `AnalyticsManager.getInstance().debugMode(context, true);`
+
+Just replace `AnalyticsManager.getInstance().init()` by
+
+```java
+AnalyticsManager.getInstance().debugMode(context, true);
+```
 
 ### Manual track
 Sometimes, you cannot use annotations (if your tracks require a condition). In this case, you can use trackers manually :
