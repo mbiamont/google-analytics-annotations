@@ -1,49 +1,20 @@
 #Google Analytics Annotations
 
-## Introduction
+Android library to use Google Analytics through annotations.
 
-Are you not tired of writing code to track a simple event/screen ? This library allows you to do the same job in a single line using annotations !
-
-### TrackEvent annotation :
-
-```java
-@TrackEvent(category = "category", action = "action", label = "label", value = 1)
-```
-
-### TrackScreen annotation :
-
-```java
-@TrackScreen(name = "name")
-```
-
-## Installation
+# Installation
 
 TODO
 
-## Usage
+# Usage
 
 ### Initialization
-The first thing to do is to initialize the `AnalyticsManager`.The best way is to do it in your `Application`.
-
-To do that :
-
+In the `onCreate()` of your `Application` class, add this line :
 ```java
   AnalyticsManager.getInstance().init(context, "YOUR_GOOGLE_ANALYTICS_TRACKER_ID");
 ```
 
-You can also test your tracks (during the development phase). It'll just print tracks in LogCat.
-```java
-   AnalyticsManager.getInstance().debugMode(context, true);
-```
-
-And, ... that's it. You don't have to import any XML file or whatever... You can now use the annotations to send tracks.
-
-### Annotations
-
-The annotations can only be used on methods. You just have to add them; and each time your method will be called, the track declared in your annotation will be sent.
-
-###Event track :
-
+### Track event
 ```java
 @TrackEvent(category = "ui_action", action = "on_click", label = "on_click_login_button", value = 1)
 private void onLoginButtonClicked(){
@@ -51,7 +22,7 @@ private void onLoginButtonClicked(){
 }
 ```
 
-###Screen track :
+### Track screen
 
 ```java
 @TrackScreen(name = "MainActivity")
@@ -63,11 +34,14 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-### Manual usage
+# More
 
-For some reasons, you need to send a track switch some conditions, that's why you can't use the annotation system.
-You still can use the `AnalyticsManager` manually.
+### DebugMode
+If you just want to check if the tracks are correctly implemented; you can use the debugMode. It'll print tracks in LogCat instead of send them.
+So, instead of call `AnalyticsManager.getInstance().init()`, call `AnalyticsManager.getInstance().debugMode(context, true);`
 
+### Manual track
+Sometimes, you cannot use annotations (if your tracks require a condition). In this case, you can use trackers manually :
 ```java
 private void onLoginButtonClicked(){
   if(user.isLogged()){
@@ -82,6 +56,8 @@ private void onLoginButtonClicked(){
 }
 ```
 
+or 
+
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +71,6 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-## Future
+# Roadmap
 
-- list of tracks
+- Implement a 'list' system to send tracks on multiple Google Analytics accounts.
