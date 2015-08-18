@@ -9,7 +9,7 @@ TODO
 # Usage
 
 ### Initialization
-In the `onCreate()` of your `Application` class, add this line :
+In the `onCreate()` method of your `Application` class, add this line :
 ```java
   AnalyticsManager.getInstance().init(context, "YOUR_GOOGLE_ANALYTICS_TRACKER_ID");
 ```
@@ -18,7 +18,7 @@ In the `onCreate()` of your `Application` class, add this line :
 ```java
 @TrackEvent(category = "ui_action", action = "on_click", label = "on_click_login_button", value = 1)
 private void onLoginButtonClicked(){
-  doYourStuff();
+  (...)
 }
 ```
 
@@ -30,7 +30,7 @@ private void onLoginButtonClicked(){
 protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity_main);
-  doYourStuff();
+  (...)
 }
 ```
 
@@ -52,11 +52,11 @@ private void onLoginButtonClicked(){
             .build());
     //or simply : AnalyticsManager.getInstance().trackEvent("ui_action", "on_click", "on_click_login_button", 1);
   }
-  doYourStuff();
+  (...)
 }
 ```
 
-or 
+or
 
 ```java
 @Override
@@ -67,7 +67,7 @@ protected void onCreate(Bundle savedInstanceState) {
   if(user.isLogged()){
     AnalyticsManager.getInstance().trackScreen("MainActivity");
   }
-  doYourStuff();
+  (...)
 }
 ```
 
