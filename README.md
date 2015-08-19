@@ -4,7 +4,27 @@ Android library to use Google Analytics through annotations.
 
 # Installation
 
-TODO
+In your `build.gradle` file add these line :
+```java
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.mbiamont:ga-annotations-plugin:1.0.0'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'GAAnnotations'
+
+(...)
+
+dependencies {
+    (...)
+    compile 'com.github.mbiamont:ga-annotations-library:1.0.0'
+}
+```
 
 # Usage
 
