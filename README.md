@@ -26,6 +26,14 @@ dependencies {
 }
 ```
 
+Don't forget to add the `android.permission.INTERNET` permission in your manifest.
+
+```xml
+(...)
+    <uses-permission android:name="android.permission.INTERNET"/>
+(...)
+```
+
 # Usage
 
 ### Initialization
