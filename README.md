@@ -2,6 +2,8 @@
 
 Android library to use Google Analytics through annotations.
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Google%20Analytics%20Annotations-green.svg?style=flat)](https://android-arsenal.com/details/1/2365)
+
 # Installation
 
 In your `build.gradle` file add these line :
