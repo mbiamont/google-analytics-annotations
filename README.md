@@ -6,7 +6,7 @@ Android library to use Google Analytics through annotations.
 
 # Installation
 
-In your `build.gradle` file add these line :
+In your `build.gradle` file add these lines :
 ```java
 buildscript {
     repositories {
