@@ -25,12 +25,7 @@ class GAAnnotationsPlugin implements Plugin<Project> {
         }
 
         variants.all { variant ->
-            if (!variant.buildType.isDebuggable()) {
-                log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
-                return;
-            }
-
-            variant.dex.doFirst {
+            variant.javaCompile.doLast {
                 String[] args = [
                         "-showWeaveInfo",
                         "-1.5",
