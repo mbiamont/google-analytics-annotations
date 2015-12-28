@@ -1,12 +1,34 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 group='com.github.mbiamont'
-version='1.0.0'
+version='1.1.0'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+publishing {
+    repositories {
+        maven {
+            url projectDir.getParentFile().getAbsolutePath()+'/repo'
+        }
+    }
+}
 
 uploadArchives {
     repositories {
+
         mavenDeployer {
+            System.err.println("MAVEN PATH : "+projectDir.getParentFile().getAbsolutePath()+'/repo');
+            repository(url: projectDir.getParentFile().getAbsolutePath()+'/repo')
+        }
+
+        /*mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
@@ -40,11 +62,11 @@ uploadArchives {
                     developer {
                         id 'mbiamont'
                         name 'Melvin Biamont'
-                        email 'memlvin.biamont@gmail.com'
+                        email 'melvin.biamont@gmail.com'
                     }
                 }
             }
-        }
+        }*/
     }
 }
 
@@ -59,7 +81,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.android.tools.build:gradle:1.5.0'
     }
 }
 
@@ -69,7 +91,7 @@ sourceCompatibility = JavaVersion.VERSION_1_7
 dependencies {
     compile gradleApi()
     compile localGroovy()
-    compile 'com.android.tools.build:gradle:1.2.3'
+    compile 'com.android.tools.build:gradle:1.5.0'
     compile 'org.aspectj:aspectjtools:1.8.5'
     compile 'org.aspectj:aspectjrt:1.8.5'
 }

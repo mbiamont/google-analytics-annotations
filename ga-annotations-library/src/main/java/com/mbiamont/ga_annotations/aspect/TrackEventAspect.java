@@ -44,6 +44,7 @@ public class TrackEventAspect {
         TrackEvent myAnnotation = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(TrackEvent.class);
 
         AnalyticsManager.getInstance().trackEvent(
+                myAnnotation.trackerId(),
                 myAnnotation.category(),
                 myAnnotation.action(),
                 myAnnotation.label(),

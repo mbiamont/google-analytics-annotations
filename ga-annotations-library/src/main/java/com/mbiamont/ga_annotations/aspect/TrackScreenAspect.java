@@ -41,7 +41,7 @@ public class TrackScreenAspect {
     @Around("method() || constructor()")
     public Object sendTrack(ProceedingJoinPoint joinPoint) throws Throwable {
         TrackScreen myAnnotation = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(TrackScreen.class);
-        AnalyticsManager.getInstance().trackScreen(myAnnotation.name());
+        AnalyticsManager.getInstance().trackScreen(myAnnotation.trackerId(), myAnnotation.name());
         return joinPoint.proceed();
     }
 }

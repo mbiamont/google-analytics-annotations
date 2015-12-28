@@ -15,6 +15,8 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
 @Retention(CLASS)
 public @interface TrackEvent {
 
+    String trackerId() default "";
+
     String category() default "category";
 
     String action() default "action";

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GA-annotations.iml" filepath="$PROJECT_DIR$/GA-annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/ga-annotations-library/ga-annotations-library.iml" filepath="$PROJECT_DIR$/ga-annotations-library/ga-annotations-library.iml" />
       <module fileurl="file://$PROJECT_DIR$/ga-annotations-plugin/ga-annotations-plugin.iml" filepath="$PROJECT_DIR$/ga-annotations-plugin/ga-annotations-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/ga-annotations-sample/ga-annotations-sample.iml" filepath="$PROJECT_DIR$/ga-annotations-sample/ga-annotations-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/google-analytics-annotations.iml" filepath="$PROJECT_DIR$/google-analytics-annotations.iml" />
     </modules>
   </component>
 </project>

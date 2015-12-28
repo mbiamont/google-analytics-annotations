@@ -3,10 +3,12 @@ package com.mbiamont.ga_annotations;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.Tracker;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by mbiamont on 04/08/15.
@@ -21,34 +23,34 @@ public final class AnalyticsManager {
     private AnalyticsManager() {
     }
 
-    private boolean enabled   = false;
-    private String  trackerId = null;
-    private Context context   = null;
+    private boolean enabled = false;
+    private String defaultTrackerId = null;
+    private Context context = null;
     private boolean debugMode = false;
 
-    public void init(Context context, String trackerId) {
+    private Map<String, Tracker> trackerMap = new HashMap<>();
+
+    public void init(Context context, String defaultTrackerId) {
         this.context = context;
-        this.trackerId = trackerId;
+        this.defaultTrackerId = defaultTrackerId;
         enabled = true;
     }
 
     public void debugMode(Context context, boolean enabled) {
         debugMode = enabled;
-        init(context, (trackerId != null) ? trackerId : "");
+        init(context, (defaultTrackerId != null) ? defaultTrackerId : "");
     }
 
     public boolean isEnabled() {
-        return enabled && trackerId != null && context != null;
+        return enabled && context != null;
     }
 
-    private boolean check(String objectTracked) {
-        if (isEnabled())
-            return true;
-        else if (context != null && trackerId != null)
+    private boolean check(String objectTracked, String trackerId) {
+        if (context == null)
             Log.w("GA-Annotations", "Cannot track " + objectTracked + ". Call 'enable()' before.");
-        else
-            Log.w("GA-Annotations", "Cannot track " + objectTracked + ". Call 'init()' before.");
-        return false;
+        else if (trackerId == null || trackerId.isEmpty())
+            Log.w("GA-Annotations", "Cannot track " + objectTracked + ". Call 'init()' before or provide the trackerId.");
+        return isEnabled();
     }
 
     public void enable() {
@@ -59,23 +61,30 @@ public final class AnalyticsManager {
         this.enabled = false;
     }
 
-    public void trackEvent(String category, String action, String label, long value) {
-        if (check("event"))
+    private Tracker getTracker(String trackerId) {
+        if (!trackerMap.containsKey(trackerId))
+            trackerMap.put(trackerId, GoogleAnalytics.getInstance(context).newTracker(trackerId));
+        return trackerMap.get(trackerId);
+    }
+
+    public void trackEvent(String trackerId, String category, String action, String label, long value) {
+        if (trackerId == null || trackerId.isEmpty())
+            trackerId = defaultTrackerId;
+
+        if (check("event", trackerId))
             if (!debugMode)
-                GoogleAnalytics
-                        .getInstance(context)
-                        .getTracker(trackerId)
-                        .send(MapBuilder.createEvent(category,
-                                action,
-                                label,
-                                value).build());
+                getTracker(trackerId).send(new HitBuilders.EventBuilder().setCategory(category).setAction(action).setLabel(label).build());
             else
                 Log.i("GA-Annotations", "trackEvent(" +
+                        "\"" + trackerId + "\", " +
                         "\"" + category + "\", " +
                         "\"" + action + "\", " +
                         "\"" + label + "\", " +
                         value + ");");
+    }
 
+    public void trackEvent(String category, String action, String label, long value) {
+        trackEvent(defaultTrackerId, category, action, label, value);
     }
 
     public void trackEvent(Event event) {
@@ -85,14 +94,22 @@ public final class AnalyticsManager {
                 event.getValue());
     }
 
-    public void trackScreen(String screenName) {
-        if (check("screen"))
+    public void trackScreen(String trackerId, String screenName) {
+        if (trackerId == null || trackerId.isEmpty())
+            trackerId = defaultTrackerId;
+
+        if (check("screen", trackerId))
             if (!debugMode) {
-                Tracker tracker = GoogleAnalytics.getInstance(context).getTracker(trackerId);
-                tracker.set(Fields.SCREEN_NAME, screenName);
-                tracker.send(MapBuilder.createAppView().build());
+                Tracker tracker = getTracker(trackerId);
+                tracker.setScreenName(screenName);
+                tracker.send(new HitBuilders.ScreenViewBuilder().build());
             } else
                 Log.i("GA-Annotations", "trackScreen(" +
+                        "\"" + trackerId + "\", " +
                         "\"" + screenName + "\");");
+    }
+
+    public void trackScreen(String screenName) {
+        trackScreen(defaultTrackerId, screenName);
     }
 }

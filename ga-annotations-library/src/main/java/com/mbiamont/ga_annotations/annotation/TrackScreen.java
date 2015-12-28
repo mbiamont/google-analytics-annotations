@@ -14,5 +14,8 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
 @Target({TYPE, METHOD, CONSTRUCTOR})
 @Retention(CLASS)
 public @interface TrackScreen {
+
+    String trackerId() default "";
+
     String name() default "screen";
 }

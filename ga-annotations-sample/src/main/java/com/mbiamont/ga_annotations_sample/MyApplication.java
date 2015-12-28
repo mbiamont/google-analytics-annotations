@@ -13,6 +13,5 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         AnalyticsManager.getInstance().debugMode(this, true);
-        AnalyticsManager.getInstance().init(this, "YOUR_GOOGLE_ANALYTICS_TRACKER_ID");
     }
 }
