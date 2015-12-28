@@ -249,5 +249,7 @@
     <orderEntry type="library" exported="" name="joda-time-2.7" level="project" />
     <orderEntry type="library" exported="" name="gradle-tooling-api-builders-2.4" level="project" />
     <orderEntry type="library" exported="" name="ga-annotations-plugin.ga-annotations-plugin-1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="ga-annotations-plugin.ga-annotations-plugin-1.1.0-javadoc" level="project" />
+    <orderEntry type="library" exported="" name="ga-annotations-plugin.ga-annotations-plugin-1.1.0-sources" level="project" />
   </component>
 </module>
