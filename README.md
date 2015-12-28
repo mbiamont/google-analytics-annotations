@@ -4,6 +4,10 @@ Android library to use Google Analytics through annotations.
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Google%20Analytics%20Annotations-green.svg?style=flat)](https://android-arsenal.com/details/1/2365)
 
+[![Maven central](https://img.shields.io/maven-central/v/com.github.mbiamont/ga-annotations-library.svg)](https://android-arsenal.com/details/1/2365)
+
+
+
 # Installation
 
 In your `build.gradle` file add these lines :
@@ -13,7 +17,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.github.mbiamont:ga-annotations-plugin:1.0.0'
+        classpath 'com.github.mbiamont:ga-annotations-plugin:1.1.0'
     }
 }
 
@@ -24,16 +28,8 @@ apply plugin: 'GAAnnotations'
 
 dependencies {
     (...)
-    compile 'com.github.mbiamont:ga-annotations-library:1.0.0'
+    compile 'com.github.mbiamont:ga-annotations-library:1.1.0'
 }
-```
-
-Don't forget to add the `android.permission.INTERNET` permission in your manifest.
-
-```xml
-(...)
-    <uses-permission android:name="android.permission.INTERNET"/>
-(...)
 ```
 
 # Usage
@@ -65,6 +61,20 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 
 # More
+
+### Use multiple TrackerId
+If you have to use multiple trackerId in your application, you can define for each event or screen the tracker to use.
+
+Example :
+```java
+@TrackScreen(trackerId= "UA-XXXX1", name = "MainActivity")
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.activity_main);
+  (...)
+}
+```
 
 ### DebugMode
 If you just want to check if the tracks are correctly implemented; you can use the debugMode. It'll print tracks in LogCat instead of send them.
@@ -121,4 +131,4 @@ License
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
-    limitations under the License.
+    limitations under the License.Upda
