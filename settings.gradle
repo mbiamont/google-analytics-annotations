@@ -1,1 +1,1 @@
-include ':ga-annotations-plugin', ':ga-annotations-library', ':ga-annotations-sample'
+include ':ga-annotations-plugin', ':ga-annotations-library', ':ga-annotations-sample', ':ga-annotations-sample-library'

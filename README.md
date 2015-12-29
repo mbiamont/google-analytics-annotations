@@ -4,6 +4,7 @@ Android library to use Google Analytics through annotations.
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Google%20Analytics%20Annotations-green.svg?style=flat)](https://android-arsenal.com/details/1/2365)
 
+[![Maven central](https://img.shields.io/maven-central/v/com.github.mbiamont/ga-annotations-plugin.svg)](https://android-arsenal.com/details/1/2365)
 [![Maven central](https://img.shields.io/maven-central/v/com.github.mbiamont/ga-annotations-library.svg)](https://android-arsenal.com/details/1/2365)
 
 
@@ -28,7 +29,7 @@ apply plugin: 'GAAnnotations'
 
 dependencies {
     (...)
-    compile 'com.github.mbiamont:ga-annotations-library:1.1.0'
+    compile 'com.github.mbiamont:ga-annotations-library:1.1.1'
 }
 ```
 

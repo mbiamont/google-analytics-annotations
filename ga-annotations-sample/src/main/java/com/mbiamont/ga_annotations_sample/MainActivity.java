@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.ga_annotations_sample_library.MainController;
 import com.mbiamont.ga_annotations.AnalyticsManager;
 import com.mbiamont.ga_annotations.annotation.TrackEvent;
 import com.mbiamont.ga_annotations.annotation.TrackScreen;
@@ -54,6 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doStuff() {
-        AnalyticsManager.getInstance().trackScreen("MainActivity");
+        MainController.doStuff();
     }
 }

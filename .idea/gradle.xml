@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/ga-annotations-library" />
             <option value="$PROJECT_DIR$/ga-annotations-plugin" />
             <option value="$PROJECT_DIR$/ga-annotations-sample" />
+            <option value="$PROJECT_DIR$/ga-annotations-sample-library" />
           </set>
         </option>
       </GradleProjectSettings>
