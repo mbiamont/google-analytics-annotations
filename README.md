@@ -18,7 +18,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.github.mbiamont:ga-annotations-plugin:1.1.0'
+        classpath 'com.github.mbiamont:ga-annotations-plugin:1.1.1'
     }
 }
 
@@ -29,7 +29,7 @@ apply plugin: 'GAAnnotations'
 
 dependencies {
     (...)
-    compile 'com.github.mbiamont:ga-annotations-library:1.2.0'
+    compile 'com.github.mbiamont:ga-annotations-library:1.2.1'
 }
 ```
 
